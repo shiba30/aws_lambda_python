@@ -1,14 +1,16 @@
-from src.common.base import Base
 import json
+
+from .base import Base
 
 
 class Exec(Base):
     def __init__(self):
         super().__init__("Exec")
 
-    def run(self, event, context):
+    def run(self, event=None, context=None):
         self.log(2, "Hello, World!")
 
+        """
         params = self.ssm.put_parameter(
             Name="my-parameter",
             Value="my-value",
@@ -28,5 +30,5 @@ class Exec(Base):
                     "message": {"S": message["message"]},
                 },
             )
-
+        """
         return

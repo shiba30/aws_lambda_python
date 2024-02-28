@@ -1,9 +1,10 @@
-from abc import ABC, abstractmethod
 import logging
-import boto3
+from abc import ABC, abstractmethod
+
+# import boto3
 
 
-class BaseClass(ABC):
+class Base(ABC):
     def __init__(self, name):
         self.name = name
         self.logger = logging.getLogger(name)
@@ -13,10 +14,10 @@ class BaseClass(ABC):
         )
         self.logger.addHandler(logging.StreamHandler())
         self.logger.handlers[0].setFormatter(self.formatter)
-        self.s3 = boto3.client("s3")
-        self.sns = boto3.client("sns")
-        self.sqs = boto3.client("sqs")
-        self.dynamodb = boto3.client("dynamodb")
+        # self.s3 = boto3.client("s3")
+        # self.sns = boto3.client("sns")
+        # self.sqs = boto3.client("sqs")
+        # self.dynamodb = boto3.client("dynamodb")
 
     @abstractmethod
     def run(self):
