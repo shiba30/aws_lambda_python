@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566" # LocalStackのデフォルトのエッジポート
+      - "4571:4571" # LocalStackのレガシーポート（必要に応じて）
+    environment:
+      - SERVICES=lambda,sqs,dynamodb,events,stepfunctions,ssm,apigateway
+      - DEFAULT_REGION=us-east-1
+      - DEBUG=1 # デバッグ出力の有効化（オプション）
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  mysql:
+    image: mysql:8.0 # Aurora MySQLの代わりに通常のMySQLを使用
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: aurora
+    ports:
+      - "3306:3306"

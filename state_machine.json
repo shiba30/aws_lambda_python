@@ -1,0 +1,12 @@
+{
+    "Comment": "A simple AWS Step Functions state machine that invokes a Lambda function.",
+    "StartAt": "HelloLambda",
+    "States": {
+      "HelloLambda": {
+        "Type": "Task",
+        "Resource": "arn:aws:lambda:us-east-1:000000000000:function:MyLambdaFunction",
+        "End": true
+      }
+    }
+  }
+  
